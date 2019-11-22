@@ -14,33 +14,44 @@
 '''
 
 from random import randint
-
+from sys import exit
 options = {1:'Rock',2:'Paper',3:'Scissor'}
-
-user_choice = int(input("Your_Choice[1-3] :"))
-if user_choice<1 or user_choice >3:
-    print("Invalid Choice")
 computer_choice = randint(1,3)
+
 
 ## compare the two choices
 ## if the same or not (if not further check nedded,if the same repeat the geame)
-winner_choice=''
-if computer_choice==user_choice:
-    print("DRAW")
-else:
-    if (options[computer_choice]=='Rock' and options[user_choice]=='Paper') or (options[computer_choice]=='Paper' and options[computer_choice]=='Rock'):
-        winner_choice = 'Paper'
-    elif (options[computer_choice] == 'Rock' and options[user_choice]=='Scissor') or (options[computer_choice]=='Scissor' and options[computer_choice]=='Rock'):
-        winner_choice = 'Rock'
+while True:
+    while True:
+        user_choice = int(input("Your_Choice[1-3] :"))
+        if user_choice>=1 and user_choice<=3:
+            break
+        else:
+            print("Invalid Choice")
+    winner_choice=''
+    if computer_choice==user_choice:
+        print("DRAW")
     else:
-        winner_choice='Scissor'
+        if (options[computer_choice]=='Rock' and options[user_choice]=='Paper') or (options[computer_choice]=='Paper' and options[computer_choice]=='Rock'):
+            winner_choice = 'Paper'
+        elif (options[computer_choice] == 'Rock' and options[user_choice]=='Scissor') or (options[computer_choice]=='Scissor' and options[computer_choice]=='Rock'):
+            winner_choice = 'Rock'
+        else:
+            winner_choice='Scissor'
 
-if options[computer_choice]==winner_choice:
-    print("The winner is The computer")
-    print(computer_choice)
-elif options[user_choice]==winner_choice:
-    print("The winner is The user")
-    print(computer_choice)
+
+    if options[computer_choice]==winner_choice:
+        print("The winner is The computer")
+        print(computer_choice)
+    elif options[user_choice]==winner_choice:
+        print("The winner is The user")
+        print(computer_choice)
+
+    exit_flag = input("Do you want to continue : [Y-y ,N-n]")
+    if exit_flag=='Y' or exit_flag=='y':
+        exit(0)
+    else:
+        continue
 
 
 
